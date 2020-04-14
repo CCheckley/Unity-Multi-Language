@@ -1,9 +1,8 @@
 ﻿using UnityEngine;
 
-[CreateAssetMenu(menuName = "Translation", fileName = "New Translation")]
-public class Translation : ScriptableObject // Scriptable object so we can store in engine each string and its translations
+[CreateAssetMenu(menuName = "Translation", fileName = "New Translation")] // Sets up the translation in the context menu (right click in assets/heirarchy)
+public class Translation : ScriptableObject // Scriptable object so we can hold the data in engine and attach to objects
 {
-    // Store value for each translation
     public string en;
     public string fr;
     public string de;
@@ -14,33 +13,35 @@ public class Translation : ScriptableObject // Scriptable object so we can store
     public string zh;
     public string pt;
     public string zhtw;
-
-    public string Translate() // translates based on current global state language
+    
+    public string Translate()
     {
-        switch (GlobalState.language)
+        // Uses global language state
+        switch (GameManager.lang)
         {
-            case Language.en:
+            case SystemLanguage.English:
                 return en;
-            case Language.fr:
+            case SystemLanguage.French:
                 return fr;
-            case Language.de:
+            case SystemLanguage.German:
                 return de;
-            case Language.es:
+            case SystemLanguage.Spanish:
                 return es;
-            case Language.ja:
+            case SystemLanguage.Japanese:
                 return ja;
-            case Language.ko:
+            case SystemLanguage.Korean:
                 return ko;
-            case Language.ru:
+            case SystemLanguage.Russian:
                 return ru;
-            case Language.zh:
+            case SystemLanguage.Chinese:
+            case SystemLanguage.ChineseSimplified:
                 return zh;
-            case Language.pt:
+            case SystemLanguage.Portuguese:
                 return pt;
-            case Language.zhtw:
+            case SystemLanguage.ChineseTraditional:
                 return zhtw;
             default:
-                return string.Empty; // If the specified language isn't implemented, return an empty string, you could also throw here to handle the error
+                return string.Empty; // return empty string if not implemented
         }
     }
 }

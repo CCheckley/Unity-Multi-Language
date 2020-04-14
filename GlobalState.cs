@@ -1,20 +1,11 @@
 using UnityEngine;
 
-public enum Language
-{
-    en, //ENGLISH
-    fr, //FRENCH
-    de, //GERMAN
-    es, //SPANISH - SPAIN
-    ja, //JAPANESE
-    ko, //KOREAN
-    ru, //RUSSIAN
-    zh, //CHINESE - SIMPLE
-    pt, //PORTUGUESE
-    zhtw // CHINESE - TRADITIONAL
-}
-
 public class GlobalState
 {
-    public static Language language; // Set by user choice, used to translate strings
+    public static SystemLanguage language; // Global static SystemLanguage used to translate strings
+
+    private void Awake()
+    {
+        language = Application.systemLanguage; // Set global language when starting to the current system's language
+    }
 }
